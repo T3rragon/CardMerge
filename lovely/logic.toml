@@ -1,0 +1,14 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = """    self.base.suit_nominal_original = suit_base_nominal_original or suit.suit_nominal or 0"""
+position = "after"
+payload = """self.ability.suit_table = CARDMERGE.SyncSuitTable(self.base.suit)
+"""
+overwrite = true
+match_indent = true

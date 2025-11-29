@@ -1,0 +1,20 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = '''
+--Fill all remaining info if this is the main desc
+'''
+position = 'before'
+match_indent = true
+payload = '''
+if card and card.ability and card.ability.suit_table and (type(card.ability.suit_table) == "table" and CARDMERGE.SuitAmount(card, true) > 1) then
+        info_queue[#info_queue + 1] = { set = 'Other', key = 'cmerge_merged_suit_tooltip', vars = { table.concat(CARDMERGE.AbilityTableAsValues(card), ', ') } }
+end
+
+'''

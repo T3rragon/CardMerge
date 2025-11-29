@@ -1,0 +1,12 @@
+{
+	"id": "cardmerge",
+	"name": "CardMerge",
+	"author": ["T3rragon"],
+	"description": "Merge your playing cards together to make new suits! A flush lover's delight!",
+	"prefix": "cmerge",
+	"main_file": "cardmerge.lua",
+	"priority": 701,
+	"version": "0.1.0~ALPHA-1128a",
+	"badge_colour": "AC38D5",
+	"dependencies": []
+}

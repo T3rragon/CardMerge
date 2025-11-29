@@ -1,0 +1,28 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+[[patches]]
+[patches.pattern]
+target = "globals.lua"
+pattern = """        RENTAL = HEX('b18f43'),"""
+position = "after"
+payload = """CMERGE_NONES = HEX("374649"),
+CMERGE_KITES = HEX("D2168D"),
+CMERGE_SUNS = HEX("D79017"),
+CMERGE_CUPS = HEX("486145"),
+CMERGE_SQUIDS = HEX("503872"),
+CMERGE_CRESCENTS = HEX("2C4861"),
+CMERGE_METALS = HEX("2C4861"),
+CMERGE_WATERS = HEX("368EDC"),
+CMERGE_EARTHS = HEX("3AD05A"),
+CMERGE_FIRES = HEX("DF672F"),
+CMERGE_AIRS = HEX("78C4B8"),
+CMERGE_OMNIS = HEX("AC38D5"),
+CMERGE_SYMBOL_PACK_LIGHT = HEX("EEAF85"),
+CMERGE_SYMBOL_PACK_MEDIUM = HEX("B5563C"),
+CMERGE_SYMBOL_PACK_DARK = HEX("863228"),
+"""
+overwrite = true
+match_indent = true
