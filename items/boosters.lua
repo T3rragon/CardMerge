@@ -14,13 +14,6 @@ SMODS.Sound({
     end
 })
 
-SMODS.Atlas {
-    key = "booster_symbol_pack",
-    path = "booster_symbol_pack.png",
-    px = 71,
-    py = 95,
-}
-
 local symbolChoices = {
     'c_star',
     'c_moon',
@@ -28,10 +21,29 @@ local symbolChoices = {
     'c_world',
     'c_sigil',
     'c_cryptid',
-    'c_cmerge_merge',
-    'c_cmerge_slice',
+    'c_cmerge_mergesuit',
+    'c_cmerge_slicesuit',
     'c_cmerge_flip',
-    'c_cmerge_burn', -- TODO: FINISH LIST
+    'c_cmerge_burn',
+    'c_cmerge_gainspades',
+    'c_cmerge_gainclubs',
+    'c_cmerge_gainhearts',
+    'c_cmerge_gaindiamonds',
+    'c_cmerge_mergerank',
+    'c_cmerge_add',
+    'c_cmerge_promote',
+    'c_cmerge_slicerank',
+    'c_cmerge_trade',
+    'c_cmerge_scattersuit',
+    'c_cmerge_inspiresuit',
+    'c_cmerge_null',
+    'c_cmerge_ritual',
+    'c_cmerge_release',
+    'c_cmerge_chance',
+    'c_cmerge_mitosis',
+    'c_cmerge_rotary',
+    'c_cmerge_scatterrank',
+    'c_cmerge_inspirerank'
 }
 
 local ease_bg_symbol = function(self)

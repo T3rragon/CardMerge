@@ -4,7 +4,7 @@ if AKYRS then
     local other_mods_suit_to_atlas_ref = AKYRS.other_mods_suit_to_atlas
     function AKYRS:other_mods_suit_to_atlas(suit_key, card)
         local trueKey = suit_key.base.suit
-        if trueKey == "cmerge_Kites" then
+        if trueKey == "cmerge_Trees" then
             return G.ASSET_ATLAS['cmerge_solo_suits'], { x = 0, y = 0 }
         end
         if trueKey == "cmerge_Suns" then

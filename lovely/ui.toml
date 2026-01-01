@@ -12,9 +12,12 @@ pattern = '''
 '''
 position = 'before'
 match_indent = true
-payload = '''
-if card and card.ability and card.ability.suit_table and (type(card.ability.suit_table) == "table" and CARDMERGE.SuitAmount(card, true) > 1) then
-        info_queue[#info_queue + 1] = { set = 'Other', key = 'cmerge_merged_suit_tooltip', vars = { table.concat(CARDMERGE.AbilityTableAsValues(card), ', ') } }
+payload = '''if card and card.ability and card.ability.suit_table and (type(card.ability.suit_table) == "table" and CARDMERGE.SuitAmount(card, true) > 1) then
+        info_queue[#info_queue + 1] = { set = 'Other', key = 'cmerge_merged_suit_tooltip', vars = { table.concat(CARDMERGE.SuitTableAsValues(card), ', ') } }
+end
+
+if card and card.ability and card.ability.suit_table and (type(card.ability.rank_table) == "table" and CARDMERGE.RankAmount(card, true) > 1) then
+        info_queue[#info_queue + 1] = { set = 'Other', key = 'cmerge_merged_rank_tooltip', vars = { table.concat(CARDMERGE.RankTableAsValues(card, true), ', ') } }
 end
 
 '''

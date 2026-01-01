@@ -7,93 +7,77 @@ SMODS.Atlas {
     py = 34
 }
 
+SMODS.load_file("initialize.lua")()
+SMODS.load_file("suit_inject.lua")()
 SMODS.load_file("functions.lua")()
-SMODS.load_file("tarots.lua")()
-SMODS.load_file("spectrals.lua")()
-SMODS.load_file("jokers.lua")()
-SMODS.load_file("boosters.lua")()
+
+SMODS.load_file("items/tarots.lua")()
+SMODS.load_file("items/spectrals.lua")()
+SMODS.load_file("items/jokers.lua")()
+SMODS.load_file("items/boosters.lua")()
+
 SMODS.load_file("crossmod.lua")()
+SMODS.load_file("menu.lua")()
 
-local cmergeSuits = {
-    { name = 'Kites',     color = G.C.CMERGE_KITES },     -- Diamond + Spade
-    { name = 'Suns',      color = G.C.CMERGE_SUNS },      -- Diamond + Club
-    { name = 'Cups',      color = G.C.CMERGE_CUPS },      -- Heart + Spade
-    { name = 'Squids',    color = G.C.CMERGE_SQUIDS },    -- Spade + Club
-    { name = 'Crescents', color = G.C.CMERGE_CRESCENTS }, -- Heart + Club
-    { name = 'Metals',    color = G.C.CMERGE_METALS },    -- Diamond + Heart
-    { name = 'Waters',    color = G.C.CMERGE_WATERS },    -- Heart + Club + Spade
-    { name = 'Earths',    color = G.C.CMERGE_EARTHS },    -- Diamond + Spade + Club
-    { name = 'Fires',     color = G.C.CMERGE_FIRES },     -- Heart + Spade + Diamond
-    { name = 'Airs',      color = G.C.CMERGE_AIRS },      -- Heart + Club + Diamond
-    { name = 'Omnis',     color = G.C.CMERGE_OMNIS },     -- Heart + Club + Diamond + Spade
-}
+function Card:suit_table()
+    return self.ability.suit_table
+end
 
-SMODS.Atlas({ key = 'cmerge_cards_temp', path = 'card_temp.png', px = 71, py = 95 })
-SMODS.Atlas({ key = 'cmerge_suits_temp', path = 'ui_temp.png', px = 18, py = 18 })
-SMODS.Atlas({ key = 'cmerge_cards', path = 'suits.png', px = 71, py = 95 })
-SMODS.Atlas({ key = 'cmerge_cards_hc', path = 'suits_hc.png', px = 71, py = 95 })
-SMODS.Atlas({ key = 'cmerge_suits', path = 'ui.png', px = 18, py = 18 })
-SMODS.Atlas({ key = 'cmerge_suits_hc', path = 'ui_hc.png', px = 18, py = 18 })
+function Card:set_suit_table(newTable)
+    self.ability.suit_table = newTable
+end
 
-SMODS.Suit { -- Temp
-    key = 'Nones',
-    card_key = 'NONES',
-    hidden = false,
+function Card:rank_table()
+    return self.ability.rank_table
+end
 
-    lc_atlas = 'cmerge_cards_temp',
-    lc_ui_atlas = 'cmerge_suits_temp',
-
-    pos = { x = 0, y = 0 },
-    ui_pos = { x = 0, y = 0 },
-
-    lc_colour = G.C.CMERGE_NONES,
-
-    in_pool = function(self, args)
-        if args and args.initial_deck then
-            return false
-        end
-    end
-}
-
-for i = 1, #cmergeSuits do
-    SMODS.Suit {
-        key = cmergeSuits[i].name,
-        card_key = string.upper(cmergeSuits[i].name),
-
-        lc_atlas = 'cmerge_cards',
-        lc_ui_atlas = 'cmerge_suits',
-        hc_atlas = 'cmerge_cards_hc',
-        hc_ui_atlas = 'cmerge_suits_hc',
-
-        pos = { y = i - 1 },
-        ui_pos = { x = i - 1, y = 0 },
-
-        lc_colour = cmergeSuits[i].color,
-
-        in_pool = function(self, args)
-            if args and args.initial_deck then
-                return false
-            end
-        end
-    }
+function Card:set_rank_table(newTable)
+    self.ability.rank_table = newTable
 end
 
 local card_is_suit_ref = Card.is_suit
 function Card:is_suit(suit, bypass_debuff, flush_calc)
     if not SMODS.has_no_suit(self) then
-        local suitCheck = CARDMERGE.InitAbilityTable(self)
-        if (suitCheck['Hearts'] and suit == 'Hearts') then
-            return true
-        end
-        if (suitCheck['Diamonds'] and suit == 'Diamonds') then
-            return true
-        end
-        if (suitCheck['Clubs'] and suit == 'Clubs') then
-            return true
-        end
-        if (suitCheck['Spades'] and suit == 'Spades') then
+        local suitCheck = CARDMERGE.InitSuitTable(self)
+        if suitCheck[suit] then
             return true
         end
     end
     return card_is_suit_ref(self, suit, bypass_debuff, flush_calc)
+end
+
+-- TODO: Replace these with proper hooks
+CARDMERGE.HasRank = function(card, rank)
+    if not SMODS.has_no_rank(card) then
+        if card:get_id() == rank then return true end
+        local rankCheck = CARDMERGE.InitRankTable(card)
+        if rankCheck[rank] then
+            return true
+        end
+    end
+    return false
+end
+
+CARDMERGE.HasRanks = function(card, rankList)
+    if rankList == nil or rankList == {} or type(rankList) ~= 'table' then return false end
+    if not SMODS.has_no_rank(card) then
+        local rankCheck = CARDMERGE.InitRankTable(card)
+        for i = 1, #rankList do
+            if rankCheck[tostring(rankList[i])] or card:get_id() == rankList[i] then
+                return true
+            end
+        end
+    end
+    return false
+end
+
+local is_face_ref = Card.is_face
+function Card:is_face()
+    local rankCheck = CARDMERGE.InitRankTable(self)
+    if not SMODS.has_no_rank(self) and CARDMERGE.TableAmount(rankCheck, false) > 1 then
+        if rankCheck['11'] or rankCheck['12'] or rankCheck['13'] then
+            return true
+        end
+    end
+    return is_face_ref(self)
 end

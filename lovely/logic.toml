@@ -8,7 +8,36 @@ priority = 0
 target = "card.lua"
 pattern = """    self.base.suit_nominal_original = suit_base_nominal_original or suit.suit_nominal or 0"""
 position = "after"
-payload = """self.ability.suit_table = CARDMERGE.SyncSuitTable(self.base.suit)
+payload = """if not CARDMERGE.CheckIfVagueSuits(self.base.suit) then
+    self:set_suit_table(CARDMERGE.SyncSuitTable(self.base.suit))
+end
 """
+overwrite = true
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = """    self.base.id = rank.id"""
+position = "after"
+payload = """if not CARDMERGE.CheckIfVagueRanks(self.base.value) then
+    self:set_rank_table(CARDMERGE.SyncRankTable(self.base.value))
+end
+"""
+overwrite = true
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = """function create_playing_card(card_init, area, skip_materialize, silent, colours, skip_emplace)
+    card_init = card_init or {}
+    card_init.front = card_init.front or pseudorandom_element(G.P_CARDS, pseudoseed('front'))"""
+position = "at"
+payload = """function create_playing_card(card_init, area, skip_materialize, silent, colours, skip_emplace, allow_merged)
+    card_init = card_init or {}
+    card_init.front = card_init.front or pseudorandom_element(G.P_CARDS, pseudoseed('front'))
+    if not allow_merged then card_init.front = CARDMERGE.PrematureMergeCheck(card_init.front) end
+    """
 overwrite = true
 match_indent = true
