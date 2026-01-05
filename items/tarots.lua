@@ -415,8 +415,8 @@ SMODS.Consumable { -- Slice Rank
 
 local gainValues = {
     { key = 'gainspades',   suit = 'Spades' },
-    { key = 'gainhearts',   suit = 'Hearts' },
     { key = 'gainclubs',    suit = 'Clubs' },
+    { key = 'gainhearts',   suit = 'Hearts' },
     { key = 'gaindiamonds', suit = 'Diamonds' }
 }
 for j = 1, #gainValues do
@@ -452,12 +452,12 @@ for j = 1, #gainValues do
                     trigger = 'after',
                     delay = 0.1,
                     func = function()
-                        local suitTable = G.hand.highlighted[i]:suit_table()
-                        suitTable[gainValues[j].suit] = true
+                        local suitTable = CARDMERGE.BufferTables(G.hand.highlighted[i])
+                        suitTable.suits[gainValues[j].suit] = true
                         G.hand.highlighted[i] = SMODS.change_base(G.hand.highlighted[i],
-                            CARDMERGE.SuitExtractor(suitTable))
+                            CARDMERGE.SuitExtractor(suitTable.suits))
                         if CARDMERGE.CheckIfVagueSuits(G.hand.highlighted[i].base.suit) then
-                            G.hand.highlighted[i]:set_suit_table(suitTable)
+                            G.hand.highlighted[i]:set_suit_table(suitTable.suits)
                         end
                         return true
                     end
@@ -523,13 +523,13 @@ SMODS.Consumable { -- Add
                 trigger = 'after',
                 delay = 0.1,
                 func = function()
-                    local rankTable = G.hand.highlighted[i]:rank_table()
-                    rankTable[pseudorandom_element({ '2', '3', '4', '5', '6', '7', '8', '9', '10', '14' },
+                    local rankTable = CARDMERGE.BufferTables(G.hand.highlighted[i])
+                    rankTable.ranks[pseudorandom_element({ '2', '3', '4', '5', '6', '7', '8', '9', '10', '14' },
                         pseudoseed('cmerge_add'))] = true
                     G.hand.highlighted[i] = SMODS.change_base(G.hand.highlighted[i], nil,
-                        CARDMERGE.RankExtractor(rankTable))
+                        CARDMERGE.RankExtractor(rankTable.ranks))
                     if CARDMERGE.CheckIfVagueRanks(G.hand.highlighted[i].base.value) then
-                        G.hand.highlighted[i]:set_rank_table(rankTable)
+                        G.hand.highlighted[i]:set_rank_table(rankTable.ranks)
                     end
                     return true
                 end
@@ -594,13 +594,13 @@ SMODS.Consumable { -- Promote
                 trigger = 'after',
                 delay = 0.1,
                 func = function()
-                    local rankTable = G.hand.highlighted[i]:rank_table()
-                    rankTable[pseudorandom_element({ '11', '12', '13' },
+                    local rankTable = CARDMERGE.BufferTables(G.hand.highlighted[i])
+                    rankTable.ranks[pseudorandom_element({ '11', '12', '13' },
                         pseudoseed('cmerge_promote'))] = true
                     G.hand.highlighted[i] = SMODS.change_base(G.hand.highlighted[i], nil,
-                        CARDMERGE.RankExtractor(rankTable))
+                        CARDMERGE.RankExtractor(rankTable.ranks))
                     if CARDMERGE.CheckIfVagueRanks(G.hand.highlighted[i].base.value) then
-                        G.hand.highlighted[i]:set_rank_table(rankTable)
+                        G.hand.highlighted[i]:set_rank_table(rankTable.ranks)
                     end
                     return true
                 end
