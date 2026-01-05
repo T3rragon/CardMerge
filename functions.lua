@@ -413,9 +413,12 @@ CARDMERGE.RankTableAsValues = function(card, formal)
     formal = formal or false
     local output = TableAsValues(CARDMERGE.InitRankTable(card))
     if formal then
-        local rankTable = { nil, '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'}
+        local rankTable = { [11] = 'Jack', [12] = 'Queen', [13] = 'King', [14] = 'Ace' }
         for i = 1, #output do
-            output[i] = rankTable[i]
+            local key = tonumber(output[i])
+            if key and rankTable[key] then
+                output[i] = rankTable[key]
+            end
         end
     end
     return output
