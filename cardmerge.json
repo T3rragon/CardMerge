@@ -6,7 +6,7 @@
 	"prefix": "cmerge",
 	"main_file": "cardmerge.lua",
 	"priority": 701,
-	"version": "0.2.0~ALPHA-1231a",
+	"version": "0.2.0~ALPHA-0104b",
 	"badge_colour": "AC38D5",
 	"dependencies": []
 }
