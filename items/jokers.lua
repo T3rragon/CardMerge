@@ -303,7 +303,7 @@ SMODS.Joker { -- Stacked Joker
         if context.individual and context.cardarea == G.play then
             local amount = CARDMERGE.RankAmount(context.other_card, true)
             return {
-                mult = card.ability.extra.chips * amount
+                chips = card.ability.extra.chips * amount
             }
         end
     end
