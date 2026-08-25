@@ -74,6 +74,7 @@ SMODS.Booster {
         return create_card("Consumable", G.pack_cards, nil, nil, true, nil, symbolChoices[pick], "cmerge_symbol_pack")
     end,
     ease_background_colour = ease_bg_symbol,
+	attributes = {"tarot", "spectral", "normal"},
 }
 
 SMODS.Booster {
@@ -100,6 +101,7 @@ SMODS.Booster {
         return create_card("Consumable", G.pack_cards, nil, nil, true, nil, symbolChoices[pick], "cmerge_symbol_pack")
     end,
     ease_background_colour = ease_bg_symbol,
+	attributes = {"tarot", "spectral", "normal"},
 }
 
 SMODS.Booster {
@@ -126,6 +128,7 @@ SMODS.Booster {
         return create_card("Consumable", G.pack_cards, nil, nil, true, nil, symbolChoices[pick], "cmerge_symbol_pack")
     end,
     ease_background_colour = ease_bg_symbol,
+	attributes = {"tarot", "spectral", "normal"},
 }
 
 SMODS.Booster {
@@ -152,6 +155,7 @@ SMODS.Booster {
         return create_card("Consumable", G.pack_cards, nil, nil, true, nil, symbolChoices[pick], "cmerge_symbol_pack")
     end,
     ease_background_colour = ease_bg_symbol,
+	attributes = {"tarot", "spectral", "normal"},
 }
 
 SMODS.Booster {
@@ -178,6 +182,7 @@ SMODS.Booster {
         return create_card("Consumable", G.pack_cards, nil, nil, true, nil, symbolChoices[pick], "cmerge_symbol_pack")
     end,
     ease_background_colour = ease_bg_symbol,
+	attributes = {"tarot", "spectral", "jumbo"},
 }
 
 SMODS.Booster {
@@ -204,6 +209,7 @@ SMODS.Booster {
         return create_card("Consumable", G.pack_cards, nil, nil, true, nil, symbolChoices[pick], "cmerge_symbol_pack")
     end,
     ease_background_colour = ease_bg_symbol,
+	attributes = {"tarot", "spectral", "jumbo"},
 }
 
 SMODS.Booster {
@@ -230,6 +236,7 @@ SMODS.Booster {
         return create_card("Consumable", G.pack_cards, nil, nil, true, nil, symbolChoices[pick], "cmerge_symbol_pack")
     end,
     ease_background_colour = ease_bg_symbol,
+	attributes = {"tarot", "spectral", "mega"},
 }
 
 SMODS.Booster {
@@ -256,4 +263,5 @@ SMODS.Booster {
         return create_card("Consumable", G.pack_cards, nil, nil, true, nil, symbolChoices[pick], "cmerge_symbol_pack")
     end,
     ease_background_colour = ease_bg_symbol,
+	attributes = {"tarot", "spectral", "mega"},
 }

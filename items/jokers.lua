@@ -17,7 +17,8 @@ SMODS.Joker { -- Layered Joker
                 mult = card.ability.extra.mult * amount
             }
         end
-    end
+    end,
+	attributes = {"mult", "suit", "merged_suit"},
 }
 
 SMODS.Joker { -- Yin Yang
@@ -42,7 +43,8 @@ SMODS.Joker { -- Yin Yang
                 }
             end
         end
-    end
+    end,
+	attributes = {"mult", "chips", "suit", "merged_suit"},
 }
 
 SMODS.Joker { -- Redundancy
@@ -65,7 +67,8 @@ SMODS.Joker { -- Redundancy
                 }
             end
         end
-    end
+    end,
+	attributes = {"xmult", "merged_suit", "suit"},
 }
 
 SMODS.Joker { -- Trail Mix
@@ -112,7 +115,8 @@ SMODS.Joker { -- Trail Mix
             end
         end
         card.ability.extra.poker_hand = pseudorandom_element(_poker_hands, 'cmerge')
-    end
+    end,
+	attributes = {"mult", "merged_suit", "hand_type", "suit"},
 }
 
 SMODS.Joker { -- Copper Relic
@@ -145,7 +149,8 @@ SMODS.Joker { -- Copper Relic
                 }
             end
         end
-    end
+    end,
+	attributes = {"money", "hearts", "diamonds", "merged_suit", "suit"},
 }
 
 SMODS.Joker { -- Relay System
@@ -166,6 +171,7 @@ SMODS.Joker { -- Relay System
             end
         end
     end,
+	attributes = {"retrigger", "merged_suit", "suit"},
 }
 
 SMODS.Joker { -- Rule of Thirds
@@ -207,6 +213,7 @@ SMODS.Joker { -- Rule of Thirds
             end
         end
     end
+	attributes = {"three", "merged_suit", "suit", "tarot"},
 }
 
 SMODS.Joker { -- Wallsocket
@@ -262,7 +269,8 @@ SMODS.Joker { -- Wallsocket
                 end
             end
         end
-    end
+    end,
+	attributes = {"face", "queen", "rank", "merged_suit", "suit"},
 }
 
 SMODS.Joker { -- Dart Board
@@ -284,7 +292,8 @@ SMODS.Joker { -- Dart Board
                 }
             end
         end
-    end
+    end,
+	attributes = {"rank", "merged_rank", "mult"},
 }
 
 SMODS.Joker { -- Stacked Joker
@@ -306,7 +315,8 @@ SMODS.Joker { -- Stacked Joker
                 mult = card.ability.extra.chips * amount
             }
         end
-    end
+    end,
+	attributes = {"rank", "merged_rank", "chips"},
 }
 
 SMODS.Joker { -- Saving Grace
@@ -334,7 +344,8 @@ SMODS.Joker { -- Saving Grace
                 }
             end
         end
-    end
+    end,
+	attributes = {"rank", "split_rank", "suit", "split_suit", "chips", "mult", "modify_card", "perma_bonus"},
 }
 
 SMODS.Joker { -- Cloudflare
@@ -368,6 +379,7 @@ SMODS.Joker { -- Cloudflare
             end
         end
     end,
+	attributes = {"rank", "merged_rank", "xmult"},
 }
 
 SMODS.Joker { -- Pomni
@@ -388,5 +400,6 @@ SMODS.Joker { -- Pomni
                 }
             end
         end
-    end
+    end,
+	attributes = {"suit", "merged_suit", "xmult"},
 }
