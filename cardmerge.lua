@@ -15,6 +15,7 @@ SMODS.load_file("items/tarots.lua")()
 SMODS.load_file("items/spectrals.lua")()
 SMODS.load_file("items/jokers.lua")()
 SMODS.load_file("items/boosters.lua")()
+SMODS.load_file("items/attributes.lua")()
 
 SMODS.load_file("crossmod.lua")()
 SMODS.load_file("menu.lua")()

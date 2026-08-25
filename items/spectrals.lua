@@ -41,6 +41,7 @@ SMODS.Consumable { -- Scatter Suit
     can_use = function(self, card)
         return G.hand and #G.hand.cards > 0
     end,
+	attributes = {"suit", "merged_suit"},
 }
 
 SMODS.Consumable { -- Inspire Suit
@@ -94,6 +95,7 @@ SMODS.Consumable { -- Inspire Suit
         end
         delay(0.5)
     end,
+	attributes = {"suit", "merged_suit", "destroy_card"},
 }
 
 SMODS.Consumable { -- Null
@@ -154,6 +156,7 @@ SMODS.Consumable { -- Null
         end
         delay(0.5)
     end,
+	attributes = {"suit", "split_suit"},
 }
 
 SMODS.Consumable { -- Ritual
@@ -223,6 +226,7 @@ SMODS.Consumable { -- Ritual
     can_use = function(self, card)
         return G.hand and #G.hand.cards > 0
     end,
+	attributes = {"suit", "spades", "hearts", "clubs", "diamonds", "merged_suit"},
 }
 
 SMODS.Consumable { -- Scatter Rank
@@ -268,6 +272,7 @@ SMODS.Consumable { -- Scatter Rank
     can_use = function(self, card)
         return G.hand and #G.hand.cards > 0
     end,
+	attributes = {"rank", "merged_rank"},
 }
 
 SMODS.Consumable { -- Inspire Rank
@@ -321,6 +326,7 @@ SMODS.Consumable { -- Inspire Rank
         end
         delay(0.5)
     end,
+	attributes = {"rank", "merged_rank", "destroy_card"},
 }
 
 SMODS.Consumable { -- Release
@@ -379,7 +385,8 @@ SMODS.Consumable { -- Release
             SMODS.destroy_cards(G.hand.highlighted[i])
         end
         delay(0.5)
-    end
+    end,
+	attributes = {"rank", "generation", "split_rank"},
 }
 
 SMODS.Consumable { -- Chance
@@ -437,6 +444,7 @@ SMODS.Consumable { -- Chance
     can_use = function(self, card)
         return G.hand and #G.hand.cards > 0
     end,
+	attributes = {"rank", "suit", "merged_rank", "merged_suit"},
 }
 
 SMODS.Consumable { -- Mitosis
@@ -523,7 +531,8 @@ SMODS.Consumable { -- Mitosis
             end
         }))
         delay(0.5)
-    end
+    end,
+	attributes = {"rank", "suit", "generation", "split_rank", "split_suit"},
 }
 
 SMODS.Consumable { -- Rotary
@@ -581,4 +590,5 @@ SMODS.Consumable { -- Rotary
     can_use = function(self, card)
         return G.hand and #G.hand.cards > 0
     end,
+	attributes = {"rank", "suit"},
 }

@@ -61,6 +61,7 @@ SMODS.Consumable { -- Merge Suit
 
         delay(0.5)
     end,
+	attributes = {"suit", "merged_suit"},
 }
 
 SMODS.Consumable { -- Slice Suit
@@ -138,6 +139,7 @@ SMODS.Consumable { -- Slice Suit
         }))
         delay(0.5)
     end,
+	attributes = {"suit", "split_suit"},
 }
 
 SMODS.Consumable { -- Flip
@@ -203,7 +205,8 @@ SMODS.Consumable { -- Flip
     end,
     can_use = function(self, card)
         return G.hand and #G.hand.highlighted > 0 and #G.hand.highlighted <= card.ability.max_highlighted
-    end
+    end,
+	attributes = {"suit", "merged_suit"},
 }
 
 SMODS.Consumable { -- Burn
@@ -275,7 +278,8 @@ SMODS.Consumable { -- Burn
     end,
     can_use = function(self, card)
         return G.hand and #G.hand.highlighted > 0 and #G.hand.highlighted <= card.ability.max_highlighted
-    end
+    end,
+	attributes = {"suit", "editions", "split_suit"},
 }
 
 SMODS.Consumable { -- Merge Rank
@@ -334,6 +338,7 @@ SMODS.Consumable { -- Merge Rank
 
         delay(0.5)
     end,
+	attributes = {"rank", "merged_rank"},
 }
 
 SMODS.Consumable { -- Slice Rank
@@ -411,6 +416,7 @@ SMODS.Consumable { -- Slice Rank
         }))
         delay(0.5)
     end,
+	attributes = {"rank", "split_rank"},
 }
 
 local gainValues = {
@@ -487,7 +493,8 @@ for j = 1, #gainValues do
         end,
         can_use = function(self, card)
             return G.hand and #G.hand.highlighted > 0 and #G.hand.highlighted <= card.ability.max_highlighted
-        end
+        end,
+		attributes = {"suit", gainValues[j].suit:lower(), "merged_suit"},
     }
 end
 
@@ -559,7 +566,8 @@ SMODS.Consumable { -- Add
     end,
     can_use = function(self, card)
         return G.hand and #G.hand.highlighted > 0 and #G.hand.highlighted <= card.ability.max_highlighted
-    end
+    end,
+	attributes = {"rank", "merged_rank"},
 }
 
 SMODS.Consumable { -- Promote
@@ -630,7 +638,8 @@ SMODS.Consumable { -- Promote
     end,
     can_use = function(self, card)
         return G.hand and #G.hand.highlighted > 0 and #G.hand.highlighted <= card.ability.max_highlighted
-    end
+    end,
+	attributes = {"rank", "face", "merged_rank"},
 }
 
 SMODS.Consumable { -- Trade
@@ -703,5 +712,6 @@ SMODS.Consumable { -- Trade
     end,
     can_use = function(self, card)
         return G.hand and #G.hand.highlighted > 0 and #G.hand.highlighted <= card.ability.max_highlighted
-    end
+    end,
+	attributes = {"rank", "seals", "split_rank"},
 }
