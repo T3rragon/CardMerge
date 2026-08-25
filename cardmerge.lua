@@ -51,7 +51,7 @@ CARDMERGE.HasRank = function(card, rank)
     if not SMODS.has_no_rank(card) then
         if card:get_id() == rank then return true end
         local rankCheck = CARDMERGE.InitRankTable(card)
-        if rankCheck[rank] then
+        if rankCheck[tostring(rank)] then
             return true
         end
     end
