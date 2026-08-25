@@ -212,7 +212,7 @@ SMODS.Joker { -- Rule of Thirds
                 }
             end
         end
-    end
+    end,
 	attributes = {"three", "merged_suit", "suit", "tarot"},
 }
 
